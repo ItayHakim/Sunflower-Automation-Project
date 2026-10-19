@@ -11,4 +11,3 @@ export const registerSelectors = {
   continueButton: ".register-continue-button"
 }    
     
-    

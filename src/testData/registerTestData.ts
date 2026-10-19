@@ -7,3 +7,4 @@
   password: "Test1234",
   confirmPassword: "Test1234"
 };
+export const registeredUserCookieName = "NOPCOMMERCE.AUTH";
