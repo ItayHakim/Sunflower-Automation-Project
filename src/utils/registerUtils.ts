@@ -4,7 +4,7 @@ import {basePage as test } from "../fixtures/basePage";
 import { UserDetailsType } from "../models/registerTypes";
 import { homePageSelectors } from "../mapping/homePageMapping";
 import { registerSelectors } from "../mapping/registerMapping";
-import { registeredUserCookieName } from "../testData/registerTestData";
+import { registeredUserCookieName } from "../testData/registerData";
 
 export async function fillRegisterDetails(page: Page, userDetails: UserDetailsType) {
   await page.locator(registerSelectors.maleGenderRadioButton).check();

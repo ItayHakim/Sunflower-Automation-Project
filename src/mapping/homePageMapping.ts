@@ -2,7 +2,10 @@
   userEmail: ".header-links .account",
   logout: ".ico-logout",
   shoppingCart: "#topcartlink",
-  wishlist: ".ico-wishlist"
+  wishlist: ".ico-wishlist",
+  notification:{
+    success: ".bar-notification.success",
+  }
 };
 
 export const homePageSelectors = {

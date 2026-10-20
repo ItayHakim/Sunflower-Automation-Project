@@ -3,5 +3,6 @@ export const baseUrls = {
 };
 export const urlPaths = {
   login: "/login",
-  register: "/register"
+  register: "/register",  
+  cart: "/cart",
 }

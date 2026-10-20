@@ -1,8 +1,6 @@
-export type ComputerName =
-  | "Simple Computer"
-  | "Build your own cheap computer"
-  | "Build your own computer"
-  | "Build your own expensive computer";
+import { computerNames } from "../testData/productsData";
+
+export type ComputerName = (typeof computerNames)[keyof typeof computerNames];
 
 export type ComputerOptions = {
   processor: string;
