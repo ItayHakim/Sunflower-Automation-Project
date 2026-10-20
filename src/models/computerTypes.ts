@@ -1,9 +1,4 @@
-export const computerNames = {
-  simple: "Simple Computer",
-  cheap: "Build your own cheap computer",
-  custom: "Build your own computer",
-  expensive: "Build your own expensive computer",
-} as const;
+import { computerNames } from "../testData/productsData";
 
 export type ComputerName = (typeof computerNames)[keyof typeof computerNames];
 

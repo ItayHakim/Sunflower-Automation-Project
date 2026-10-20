@@ -3,7 +3,7 @@ import { expect, type Page } from "@playwright/test";
 import { cartSelectors } from "../mapping/cartMapping";
 import { productSelectors } from "../mapping/productMapping";
 import { homePageSelectors } from "../mapping/homePageMapping";
-import { computerDetails, giftCardDetails } from "../testData/cartTestData";
+import { computerDetails, giftCardDetails } from "../testData/productsData";
 import { fillGiftCardDetails, selectComputerOptions } from "./productUtils";
 
 export async function addRandomProductToCart(page: Page, startingCartQuantity: number = 0): Promise<string> {

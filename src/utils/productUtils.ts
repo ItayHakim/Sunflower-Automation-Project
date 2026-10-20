@@ -1,7 +1,7 @@
 import { Page } from "playwright/test";
-import { Computer, computerNames } from "../models/computerTypes";
+import { Computer } from "../models/computerTypes";
 import { productSelectors } from "../mapping/productMapping";
-import { giftCardDetails } from "../testData/cartTestData";
+import { computerNames, giftCardDetails } from "../testData/productsData";
 import { clearCheckboxes, checkBoxByName } from "./commonUtils";
 
 export async function fillGiftCardDetails(page: Page) {

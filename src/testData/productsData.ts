@@ -1,5 +1,12 @@
-import { Computer, ComputerOptions } from "../models/computerTypes";
-import { userRegisterDetails } from "./registerTestData";
+import { Computer, } from "../models/computerTypes";
+import { userRegisterDetails } from "./registerData";
+
+export const computerNames = {
+  simple: "Simple Computer",
+  cheap: "Build your own cheap computer",
+  custom: "Build your own computer",
+  expensive: "Build your own expensive computer",
+} as const;
 
 export const giftCardDetails = {
   recipientName: "larry Test",
@@ -11,7 +18,7 @@ export const giftCardDetails = {
 
 export const computerDetails: Computer[] = [
   {
-    name: "Simple Computer",
+    name: computerNames.simple,
     options: {
       processor: "Slow",
       ram: "4 GB [+20.00]",
@@ -20,7 +27,7 @@ export const computerDetails: Computer[] = [
     }
   },
   {
-    name: "Build your own cheap computer",
+    name: computerNames.cheap,
     options: {
       processor: "Medium [+15.00]",
       ram: "4 GB [+20.00]",
@@ -29,7 +36,7 @@ export const computerDetails: Computer[] = [
     }
   },
   {
-    name: "Build your own computer",
+    name: computerNames.custom,
     options: {
       processor: "2.2 GHz Intel Pentium Dual-Core E2200",
       ram: "4GB [+20.00]",
@@ -39,7 +46,7 @@ export const computerDetails: Computer[] = [
     }
   },
   {
-    name: "Build your own expensive computer",
+    name: computerNames.expensive,
     options: {
       processor: "Fast [+100.00]",
       ram: "8GB [+60.00]",
