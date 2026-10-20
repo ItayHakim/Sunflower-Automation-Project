@@ -1,25 +1,18 @@
-import { checkBoxByName, clearCheckboxes, getRandomInt } from "./commonUtils";
-import { expect, type Page } from "@playwright/test";
-import { homePageSelectors } from "../mapping/homePageMapping";
-import { cartSelectors } from "../mapping/cartMapping";
-import { computerDetails, giftCardDetails } from "../testData/cartTestData";
 import { Computer } from "../models/computerTypes";
+import { expect, type Page } from "@playwright/test";
+import { cartSelectors } from "../mapping/cartMapping";
+import { homePageSelectors } from "../mapping/homePageMapping";
+import { computerDetails, giftCardDetails } from "../testData/cartTestData";
+import { checkBoxByName, clearCheckboxes, getRandomInt } from "./commonUtils";
 
-export async function addRandomProductToCart(page: Page) {
-    const products = page.locator(homePageSelectors.productItems);
-    await expect(products.first()).toBeVisible();
-    const productCount = await products.count();
-    const randomProductIndex = getRandomInt(0, productCount - 1);
-    const randomProduct = products.nth(randomProductIndex);
-
-    const cartQuantity = page.locator(cartSelectors.cartQuantity);
-    const startingCartQuantity = 0;
-    await randomProduct.getByRole("button", { name: "Add to cart", exact: true }).click();
+export async function addRandomProductToCart(page: Page,startingCartQuantity:number=0) {
+    const currentCartQuantity = page.locator(cartSelectors.productQuantity);
+    await pressAddToCartOnRandomProduct(page);
 
     const productDetails = page.locator(cartSelectors.productDetails);
-    const updatedCartQuantity = cartQuantity.filter({ hasText: `(${startingCartQuantity + 1})` });
-    await expect(productDetails.or(updatedCartQuantity).first()).toBeVisible();
+    const updatedCartQuantity = currentCartQuantity.filter({ hasText: `(${startingCartQuantity + 1})` });
 
+    await expect(productDetails.or(updatedCartQuantity).first()).toBeVisible();
     if (await productDetails.isVisible()) {
         const productName = await page.locator(cartSelectors.itemName).innerText();
         await page.waitForLoadState("domcontentloaded");
@@ -37,9 +30,19 @@ export async function addRandomProductToCart(page: Page) {
         await page.locator(cartSelectors.addToCartButton).click();
     }
 
-    await expect(cartQuantity).toHaveText(`(${startingCartQuantity + 1})`);
+    await expect(currentCartQuantity).toHaveText(`(${startingCartQuantity + 1})`);
+    await expect(page.locator(cartSelectors.successNotification)).toBeVisible();
 }
 
+export async function pressAddToCartOnRandomProduct(page: Page) {
+    const products = page.locator(homePageSelectors.productItems);
+    await expect(products.first()).toBeVisible();
+    const productCount = await products.count();
+    const randomProductIndex = getRandomInt(0, productCount - 1);
+    const randomProduct = products.nth(randomProductIndex);
+
+    await randomProduct.getByRole("button", { name: "Add to cart", exact: true }).click();
+}
 
 export async function fillGiftCardDetails(page: Page) {
     await page.locator(cartSelectors.recipientNameInput).fill(giftCardDetails.recipientName);
@@ -47,8 +50,6 @@ export async function fillGiftCardDetails(page: Page) {
     await page.locator(cartSelectors.senderNameInput).fill(giftCardDetails.senderName);
     await page.locator(cartSelectors.senderEmailInput).fill(giftCardDetails.senderEmail);
 }
-
-
 
 export async function selectComputerOptions(page: Page, computer: Computer) {
     const { processor, ram, hdd, os, software } = computer.options;

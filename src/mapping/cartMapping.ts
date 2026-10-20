@@ -1,5 +1,5 @@
 export const cartSelectors = {
-  cartQuantity: "#topcartlink .cart-qty",
+  productQuantity: "#topcartlink .cart-qty",
   productDetails: ".product-essential",
   recipientNameInput: "[id$='_RecipientName']",
   recipientEmailInput: "[id$='_RecipientEmail']",
@@ -10,6 +10,7 @@ export const cartSelectors = {
   itemName: ".product-name",
   optionDropdown: "select",
   addToCartButton: ".product-essential .add-to-cart-button",
+  successNotification: ".bar-notification.success",
   processorDropdown: "#product_attribute_16_5_4",
   ramDropdown: "#product_attribute_16_6_5",
 };
