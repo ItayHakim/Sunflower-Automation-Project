@@ -7,6 +7,9 @@ export const cartSelectors = {
   senderEmailInput: "[id$='_SenderEmail']",
   computerOptions: ".attributes dd",
   optionRadioButton: "input[type='radio']",
+  itemName: ".product-name",
   optionDropdown: "select",
-  addToCartButton: ".product-essential .add-to-cart-button"
+  addToCartButton: ".product-essential .add-to-cart-button",
+  processorDropdown: "#product_attribute_16_5_4",
+  ramDropdown: "#product_attribute_16_6_5",
 };

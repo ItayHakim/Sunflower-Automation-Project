@@ -9,7 +9,7 @@ export type ComputerOptions = {
   ram: string;
   hdd: string;
   os?: string;
-  software?: string[];
+  software: string;
 };
 
 export type Computer = {
