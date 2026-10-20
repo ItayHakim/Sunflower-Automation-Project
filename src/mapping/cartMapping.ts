@@ -1,16 +1,5 @@
 export const cartSelectors = {
   productQuantity: "#topcartlink .cart-qty",
-  productDetails: ".product-essential",
-  recipientNameInput: "[id$='_RecipientName']",
-  recipientEmailInput: "[id$='_RecipientEmail']",
-  senderNameInput: "[id$='_SenderName']",
-  senderEmailInput: "[id$='_SenderEmail']",
-  computerOptions: ".attributes dd",
-  optionRadioButton: "input[type='radio']",
-  itemName: ".product-name",
-  optionDropdown: "select",
+  cartItems: ".cart .cart-item-row",
   addToCartButton: ".product-essential .add-to-cart-button",
-  successNotification: ".bar-notification.success",
-  processorDropdown: "#product_attribute_16_5_4",
-  ramDropdown: "#product_attribute_16_6_5",
 };
