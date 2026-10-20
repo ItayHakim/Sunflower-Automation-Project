@@ -1,9 +1,9 @@
 import { Page } from "playwright/test";
-import { registerSelectors } from "../mapping/registerMapping";
-import { UserDetailsType } from "../models/registerTypes";
 import { baseUrls } from "../config/routes";
 import {basePage as test } from "../fixtures/basePage";
+import { UserDetailsType } from "../models/registerTypes";
 import { homePageSelectors } from "../mapping/homePageMapping";
+import { registerSelectors } from "../mapping/registerMapping";
 import { registeredUserCookieName } from "../testData/registerTestData";
 
 export async function fillRegisterDetails(page: Page, userDetails: UserDetailsType) {
