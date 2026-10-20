@@ -1,8 +1,8 @@
 import { baseUrls, urlPaths } from "../config/routes";
 import { basePage as test } from "../fixtures/basePage";
-import { addRandomProductToCart } from "../utils/cartUtils";
+import { addRandomProductToCart, assertProductDetailsInCart } from "../utils/cartUtils";
 import { registerSelectors } from "../mapping/registerMapping";
-import { userRegisterDetails } from "../testData/registerTestData";
+import { userRegisterDetails } from "../testData/registerData";
 import { assertRegisterDetails, fillRegisterDetails } from "../utils/registerUtils";
 
 test.describe("register user tests", () => {
@@ -19,5 +19,6 @@ test.describe("register user tests", () => {
     await assertRegisterDetails(page, userRegisterDetails);
 
     const productName = await addRandomProductToCart(page);
+    await assertProductDetailsInCart(page, productName);
   })
 })
