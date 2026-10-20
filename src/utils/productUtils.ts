@@ -1,5 +1,5 @@
 import { Page } from "playwright/test";
-import { Computer } from "../models/computerTypes";
+import { Computer, computerNames } from "../models/computerTypes";
 import { productSelectors } from "../mapping/productMapping";
 import { giftCardDetails } from "../testData/cartTestData";
 import { clearCheckboxes, checkBoxByName } from "./commonUtils";
@@ -18,7 +18,7 @@ export async function selectComputerOptions(page: Page, computer: Computer) {
 
     await fields.getByRole("radio", { name: hdd, exact: true }).check();
     switch (computer.name) {
-        case "Build your own computer":
+        case computerNames.custom:
             await page.locator(productSelectors.computer.dropdown.processor).selectOption({ label: processor });
             await page.locator(productSelectors.computer.dropdown.ram).selectOption({ label: ram });
             await fields.getByRole("radio", { name: os, exact: true }).check();

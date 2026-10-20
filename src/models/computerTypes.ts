@@ -1,8 +1,11 @@
-export type ComputerName =
-  | "Simple Computer"
-  | "Build your own cheap computer"
-  | "Build your own computer"
-  | "Build your own expensive computer";
+export const computerNames = {
+  simple: "Simple Computer",
+  cheap: "Build your own cheap computer",
+  custom: "Build your own computer",
+  expensive: "Build your own expensive computer",
+} as const;
+
+export type ComputerName = (typeof computerNames)[keyof typeof computerNames];
 
 export type ComputerOptions = {
   processor: string;
