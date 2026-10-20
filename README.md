@@ -55,7 +55,7 @@ npx playwright show-report
 ### Tests
 
 The files in `src/tests` define the test scenarios. The current test in
-`register.spec.ts` registers a new user, verifies the account email and
+`registrationAndCart.spec.ts` registers a new user, verifies the account email and
 authentication cookie, adds a random featured product, and checks its details
 in the shopping cart.
 

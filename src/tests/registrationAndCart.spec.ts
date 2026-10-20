@@ -5,9 +5,9 @@ import { registerSelectors } from "../mapping/registerMapping";
 import { userRegisterDetails } from "../testData/registerData";
 import { assertRegisterDetails, fillRegisterDetails } from "../utils/registerUtils";
 
-test.describe("register user tests", () => {
+test.describe("Registration and shopping cart", () => {
   test.use({ pagePath: urlPaths.register });
-  test("register a user with correct user details will create a new user", async ({
+  test("new user can register and add a product to the cart", async ({
     page,
   }) => {
 
