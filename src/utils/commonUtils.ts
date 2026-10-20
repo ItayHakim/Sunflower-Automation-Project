@@ -1,12 +1,12 @@
 import type { Locator, Page } from "playwright/test";
 
 export function getRandomInt(min: number, max: number) {
-  const minCeiled = Math.ceil(min);
-  const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled + 1)) + minCeiled;
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1)) + minCeiled;
 }
 
-export async function clearCheckboxes(page: Page, checkboxes: any) {
+export async function clearCheckboxes(checkboxes: any) {
     for (const checkbox of await checkboxes.all()) {
         await checkbox.uncheck();
     }

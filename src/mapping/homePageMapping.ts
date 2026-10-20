@@ -7,5 +7,6 @@
 
 export const homePageSelectors = {
     header: header,
-    productItems: ".product-item"
+    productItems: ".product-item",
+    productName: ".product-title"
 };

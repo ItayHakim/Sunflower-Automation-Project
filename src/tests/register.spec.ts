@@ -18,6 +18,6 @@ test.describe("register user tests", () => {
 
     await assertRegisterDetails(page, userRegisterDetails);
 
-    await addRandomProductToCart(page);
+    const productName = await addRandomProductToCart(page);
   })
 })

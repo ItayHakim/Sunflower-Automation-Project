@@ -5,16 +5,15 @@ import { homePageSelectors } from "../mapping/homePageMapping";
 import { computerDetails, giftCardDetails } from "../testData/cartTestData";
 import { checkBoxByName, clearCheckboxes, getRandomInt } from "./commonUtils";
 
-export async function addRandomProductToCart(page: Page,startingCartQuantity:number=0) {
+export async function addRandomProductToCart(page: Page, startingCartQuantity: number = 0): Promise<string> {
     const currentCartQuantity = page.locator(cartSelectors.productQuantity);
-    await pressAddToCartOnRandomProduct(page);
+    const productName = await pressAddToCartOnRandomProduct(page);
 
     const productDetails = page.locator(cartSelectors.productDetails);
     const updatedCartQuantity = currentCartQuantity.filter({ hasText: `(${startingCartQuantity + 1})` });
 
     await expect(productDetails.or(updatedCartQuantity).first()).toBeVisible();
     if (await productDetails.isVisible()) {
-        const productName = await page.locator(cartSelectors.itemName).innerText();
         await page.waitForLoadState("domcontentloaded");
 
         if (productName.toLowerCase().includes("gift card")) {
@@ -32,16 +31,21 @@ export async function addRandomProductToCart(page: Page,startingCartQuantity:num
 
     await expect(currentCartQuantity).toHaveText(`(${startingCartQuantity + 1})`);
     await expect(page.locator(cartSelectors.successNotification)).toBeVisible();
+
+    return productName;
 }
 
-export async function pressAddToCartOnRandomProduct(page: Page) {
+export async function pressAddToCartOnRandomProduct(page: Page): Promise<string> {
     const products = page.locator(homePageSelectors.productItems);
     await expect(products.first()).toBeVisible();
     const productCount = await products.count();
     const randomProductIndex = getRandomInt(0, productCount - 1);
     const randomProduct = products.nth(randomProductIndex);
+    const productName = await randomProduct.locator(homePageSelectors.productName).innerText();
 
     await randomProduct.getByRole("button", { name: "Add to cart", exact: true }).click();
+
+    return productName;
 }
 
 export async function fillGiftCardDetails(page: Page) {
@@ -69,6 +73,6 @@ export async function selectComputerOptions(page: Page, computer: Computer) {
             break;
     }
 
-    await clearCheckboxes(page, checkboxes);
+    await clearCheckboxes(checkboxes);
     await checkBoxByName(page, checkboxes, software);
 }
